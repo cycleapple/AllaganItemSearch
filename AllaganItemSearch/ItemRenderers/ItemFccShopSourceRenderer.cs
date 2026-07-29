@@ -28,7 +28,7 @@ public class ItemFccShopUseRenderer : ItemFccShopSourceRenderer
             ? new List<string>()
             : shopSource.MapIds.Select(c => this.MapSheet.GetRow(c).FormattedName)).Distinct().ToList();
 
-        ImGui.Text("Items that can be purchased:");
+        ImGui.Text("可購買的物品：");
 
         using (ImRaii.PushIndent())
         {
@@ -40,7 +40,7 @@ public class ItemFccShopUseRenderer : ItemFccShopSourceRenderer
 
         if (maps.Count != 0)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)
@@ -82,12 +82,12 @@ public class ItemFccShopSourceRenderer : ItemInfoRenderer<ItemFccShopSource>
 
         using (ImRaii.PushIndent())
         {
-            ImGui.Text($"Cost: Company Credit x {asSources.First().FccShopListing.Cost.Count}");
+        ImGui.Text($"所需物品：公會點數 x {asSources.First().FccShopListing.Cost.Count}");
         }
 
         if (maps.Count != 0)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)
@@ -105,12 +105,12 @@ public class ItemFccShopSourceRenderer : ItemInfoRenderer<ItemFccShopSource>
 
         using (ImRaii.PushIndent())
         {
-            ImGui.Text($"Cost: Company Credit x {asSource.FccShopListing.Cost.Count}");
+        ImGui.Text($"所需物品：公會點數 x {asSource.FccShopListing.Cost.Count}");
         }
 
         if (maps.Count != 0)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)

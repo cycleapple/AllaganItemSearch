@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using AllaganItemSearch.Filters;
 using AllaganItemSearch.Windows;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 using Dalamud.Game.Command;
 using Dalamud.Plugin.Services;
@@ -41,7 +42,7 @@ public class CommandService : IHostedService
             commandName[i],
             new CommandInfo(this.OnCommand)
             {
-                HelpMessage = "Shows the Allagan Item Search main window. Text arguments after the command will be put into the name search field.",
+                HelpMessage = Loc.T("Shows the Allagan Item Search main window. Text arguments after the command will be put into the name search field."),
             });
         }
 

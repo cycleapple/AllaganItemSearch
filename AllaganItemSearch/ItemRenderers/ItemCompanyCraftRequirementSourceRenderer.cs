@@ -23,7 +23,7 @@ public class ItemCompanyCraftRequirementSourceRenderer : ItemInfoRenderer<ItemCo
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = this.AsSource(source);
-        ImGui.TextUnformatted($"Ingredient of Craft Recipe:");
+        ImGui.TextUnformatted("使用此材料的製作配方：");
         using (ImRaii.PushIndent())
         {
             ImGui.TextUnformatted(this.GetName(source));
@@ -34,7 +34,7 @@ public class ItemCompanyCraftRequirementSourceRenderer : ItemInfoRenderer<ItemCo
     {
         var asSource = this.AsSource(source);
         asSource = asSource.DistinctBy(c => c.Item.RowId).ToList();
-        ImGui.TextUnformatted($"Ingredient of Craft Recipe:");
+        ImGui.TextUnformatted("使用此材料的製作配方：");
         using (ImRaii.PushIndent())
         {
             foreach (var row in asSource)

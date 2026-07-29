@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using AllaganItemSearch.Mediator;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 using DalaMock.Host.Mediator;
 
@@ -47,7 +48,7 @@ public class ATService(ILogger<ATService> logger, MediatorService mediatorServic
         }
         else
         {
-            this.chatGui.PrintError("Allagan Tools was not detected, please install it to get more information about this item.");
+            this.chatGui.PrintError(Loc.T("Allagan Tools was not detected, please install it to get more information about this item."));
         }
     }
 

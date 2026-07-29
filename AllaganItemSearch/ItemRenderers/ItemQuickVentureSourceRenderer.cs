@@ -26,7 +26,7 @@ public class ItemQuickVentureSourceRenderer : ItemInfoRenderer<ItemQuickVentureS
          ImGui.Text($"{asSource.RetainerTaskRow.FormattedName}");
          using (ImRaii.PushIndent())
          {
-             ImGui.Text($"Venture Cost: {asSource.RetainerTaskRow.Base.VentureCost}");
+        ImGui.Text($"探險幣消耗：{asSource.RetainerTaskRow.Base.VentureCost}");
              ImGui.Text(
                  $"Time: {asSource.RetainerTaskRow.Base.MaxTimemin.Minutes().ToHumanReadableString()}");
          }

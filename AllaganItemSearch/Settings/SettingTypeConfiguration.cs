@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 using static AllaganItemSearch.Settings.SettingType;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 namespace AllaganItemSearch.Settings;
 
@@ -12,10 +13,10 @@ public class SettingTypeConfiguration
     {
         return settingType switch
         {
-            General => "General",
-            SettingType.Features => "Features",
+            General => Loc.T("General"),
+            SettingType.Features => Loc.T("Features"),
             Mqtt => "MQTT",
-            _ => settingType.ToString(),
+            _ => Loc.T(settingType.ToString()),
         };
     }
 

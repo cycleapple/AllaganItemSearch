@@ -37,7 +37,7 @@ public class ItemGcShopUseRenderer : ItemGcShopSourceRenderer
             ? new List<string>()
             : shopSource.MapIds.Select(c => this.MapSheet.GetRow(c).FormattedName)).Distinct().ToList();
 
-        ImGui.Text("Items that can be purchased:");
+        ImGui.Text("可購買的物品：");
 
         using (ImRaii.PushIndent())
         {
@@ -49,7 +49,7 @@ public class ItemGcShopUseRenderer : ItemGcShopSourceRenderer
 
         if (maps.Count != 0)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)
@@ -93,18 +93,18 @@ public class ItemGcShopSourceRenderer : ItemInfoRenderer<ItemGCShopSource>
         var asSource = this.AsSource(source);
         var maps = asSource.MapIds?.Distinct().Select(c => this.MapSheet.GetRow(c).FormattedName).ToList() ?? new List<string>();
 
-        ImGui.Text($"Cost: {asSource.CostItem!.NameString} x {asSource.GCScripShopItem.Base.CostGCSeals}");
+        ImGui.Text($"所需物品：{asSource.CostItem!.NameString} x {asSource.GCScripShopItem.Base.CostGCSeals}");
         if (asSource.GCScripShopItem.Base.RequiredGrandCompanyRank.IsValid)
         {
             var genericRank = this.rankSheet
                                   .GetRow(asSource.GCScripShopItem.Base.RequiredGrandCompanyRank.RowId).NameRank.ExtractText()
                                   .ToTitleCase();
-            ImGui.Text($"Rank Required: " + genericRank);
+            ImGui.Text($"軍階需求：{genericRank}");
         }
 
         if (maps.Count != 0)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)

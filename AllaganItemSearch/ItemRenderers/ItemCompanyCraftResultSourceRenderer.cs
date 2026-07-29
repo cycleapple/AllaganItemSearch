@@ -29,9 +29,9 @@ public class ItemCompanyCraftResultSourceRenderer : ItemInfoRenderer<ItemCompany
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = this.AsSource(source);
-        ImGui.Text($"Craft Type: {asSource.CompanyCraftSequence.Base.CompanyCraftType.Value.Name}");
-        ImGui.Text($"Parts: {asSource.CompanyCraftSequence.CompanyCraftParts.Length}");
-        ImGui.Text("Ingredients:");
+        ImGui.Text($"製作類型：{asSource.CompanyCraftSequence.Base.CompanyCraftType.Value.Name}");
+        ImGui.Text($"部件數：{asSource.CompanyCraftSequence.CompanyCraftParts.Length}");
+        ImGui.Text("材料：");
         using (ImRaii.PushIndent())
         {
             foreach (var ingredient in asSource.CompanyCraftSequence.MaterialsRequired(null))

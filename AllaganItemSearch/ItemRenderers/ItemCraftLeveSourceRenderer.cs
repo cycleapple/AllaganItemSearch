@@ -21,10 +21,10 @@ public class ItemCraftLeveSourceRenderer : ItemInfoRenderer<ItemCraftLeveSource>
     {
         var asSource = this.AsSource(source);
         var leveRow = asSource.CraftLeve.Value.Leve.Value;
-        ImGui.Text("Leve: " + leveRow.Name.ExtractText());
-        ImGui.Text("Class: " + leveRow.ClassJobCategory.Value.Name.ExtractText());
-        ImGui.Text("EXP Reward: " + leveRow.ExpReward);
-        ImGui.Text("Allowance Cost: " + leveRow.AllowanceCost);
+        ImGui.Text("理符：" + leveRow.Name.ExtractText());
+        ImGui.Text("職業：" + leveRow.ClassJobCategory.Value.Name.ExtractText());
+        ImGui.Text("經驗值獎勵：" + leveRow.ExpReward);
+        ImGui.Text("理符額度消耗：" + leveRow.AllowanceCost);
     };
 
     public override Func<ItemSource, string> GetName => source =>

@@ -53,20 +53,20 @@ public class ItemQuestSourceRenderer : ItemInfoRenderer<ItemQuestSource>
         var quest = asSource.Quest.Value;
 
         var questName = quest.Name.ToImGuiString();
-        ImGui.Text("Name: " + questName);
-        ImGui.Text("Expansion: " + quest.Expansion.Value.Name.ToImGuiString());
+        ImGui.Text("名稱：" + questName);
+        ImGui.Text("版本：" + quest.Expansion.Value.Name.ToImGuiString());
         if (quest.BeastTribe.RowId != 0)
         {
-            ImGui.Text("Allied Society: " + quest.BeastTribe.Value.Name.ToImGuiString());
+            ImGui.Text("友好部族：" + quest.BeastTribe.Value.Name.ToImGuiString());
         }
         if (quest.Festival.RowId != 0 && this.festivalNames.ContainsKey(quest.Festival.RowId))
         {
             ImGui.PushTextWrapPos();
-            ImGui.Text("Only available from " + this.festivalNames[quest.Festival.RowId]);
+            ImGui.Text("僅能於「" + this.festivalNames[quest.Festival.RowId] + "」期間取得");
             ImGui.PopTextWrapPos();
         }
 
-        ImGui.Text("Rewards:");
+        ImGui.Text("獎勵：");
         using (ImRaii.PushIndent())
         {
             foreach (var reward in quest.Reward)
@@ -166,7 +166,7 @@ public class ItemQuestSourceRenderer : ItemInfoRenderer<ItemQuestSource>
 
         if (asSource.QuestClassJobReward != null && asSource.QuestClassJobRewardSubRowId != null)
         {
-            ImGui.Text("Required:");
+            ImGui.Text("需求：");
             using (ImRaii.PushIndent())
             {
                 var jobReward =  asSource.QuestClassJobReward.Value.Value[asSource.QuestClassJobRewardSubRowId.Value];

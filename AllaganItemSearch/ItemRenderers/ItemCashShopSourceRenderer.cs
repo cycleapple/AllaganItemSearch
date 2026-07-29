@@ -22,11 +22,11 @@ public class ItemCashShopSourceRenderer : ItemInfoRenderer<ItemCashShopSource>
     {
         var asSource = this.AsSource(source);
         var priceUsd = asSource.PriceUsd.ToString("C2", CultureInfo.GetCultureInfo("en-US"));
-        ImGui.TextUnformatted($"Price(USD): {priceUsd}");
+        ImGui.TextUnformatted($"價格（美元）：{priceUsd}");
         if (asSource.FittingShopItemSetRow?.Items.Count > 1)
         {
-            ImGui.TextUnformatted($"Set: {asSource.FittingShopItemSetRow.Base.Unknown6.ExtractText()}");
-            ImGui.TextUnformatted($"Contains:");
+            ImGui.TextUnformatted($"套裝：{asSource.FittingShopItemSetRow.Base.Unknown6.ExtractText()}");
+            ImGui.TextUnformatted("包含：");
             using (ImRaii.PushIndent())
             {
                 foreach (var item in asSource.FittingShopItemSetRow.Items)

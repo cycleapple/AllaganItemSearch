@@ -20,7 +20,7 @@ public class ItemStainUseRenderer : ItemInfoRenderer<ItemStainSource>
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var stainSource = this.AsSource(source);
-        ImGui.Text("Colour: " + stainSource.Stain.Value.Name.ExtractText());
+        ImGui.Text("顏色：" + stainSource.Stain.Value.Name.ExtractText());
         var color = stainSource.Stain.Value.Color.ThreeChannelColorToVector4Color();
         if (ImGui.ColorButton("ColorPreview", color, ImGuiColorEditFlags.None, new (64,64)))
         {

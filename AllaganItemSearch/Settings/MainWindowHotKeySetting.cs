@@ -10,6 +10,7 @@ using Dalamud.Game.ClientState.Keys;
 using Dalamud.Plugin.Services;
 
 using ImGuiService = AllaganItemSearch.Services.ImGuiService;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 namespace AllaganItemSearch.Settings;
 
@@ -27,9 +28,9 @@ public class MainWindowHotKeySetting : HotkeyFormField<Configuration>, ISetting,
 
     public override string Key { get; set; } = "MainWindowHotKey";
 
-    public override string Name { get; set; } = "Hotkey - Main Window";
+    public override string Name { get; set; } = Loc.T("Hotkey - Main Window");
 
-    public override string HelpText { get; set; } = "The hotkey to open the main window";
+    public override string HelpText { get; set; } = Loc.T("The hotkey to open the main window");
 
     public override string Version { get; } = "1.0.0.5";
 

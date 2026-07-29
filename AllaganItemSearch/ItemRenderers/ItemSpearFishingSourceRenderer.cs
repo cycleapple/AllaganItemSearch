@@ -37,11 +37,11 @@ public class ItemSpearfishingSourceRenderer : ItemInfoRenderer<ItemSpearfishingS
             : shopSource.MapIds.Select(c => this.mapSheet.GetRow(c).FormattedName)).Distinct().ToList();
 
         var level = asSources.First().SpearfishingItemRow.Base.GatheringItemLevel.Value.GatheringItemLevel;
-        ImGui.Text("Level:" + (level == 0 ? "N/A" : level));
+        ImGui.Text("等級：" + (level == 0 ? "無" : level));
 
         if (maps.Count != 0)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)
@@ -59,11 +59,11 @@ public class ItemSpearfishingSourceRenderer : ItemInfoRenderer<ItemSpearfishingS
         var maps = asSource.MapIds?.Select(c => this.mapSheet.GetRow(c).FormattedName).Distinct().ToList() ?? [];
 
         var level = asSource.SpearfishingItemRow.Base.GatheringItemLevel.Value.GatheringItemLevel;
-        ImGui.Text("Level:" + (level == 0 ? "N/A" : level));
+        ImGui.Text("等級：" + (level == 0 ? "無" : level));
 
         if (maps.Count != 0)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)

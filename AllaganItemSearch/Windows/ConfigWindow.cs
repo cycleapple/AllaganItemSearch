@@ -16,6 +16,7 @@ using DalaMock.Host.Mediator;
 using Dalamud.Interface.Utility.Raii;
 
 using Dalamud.Bindings.ImGui;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 namespace AllaganItemSearch.Windows;
 
@@ -37,7 +38,7 @@ public class ConfigWindow : ExtendedWindow
         IConfigurationWizardService<Configuration> configurationWizardService,
         SettingTypeConfiguration settingTypeConfiguration,
         IEnumerable<SettingPage> settingPages)
-        : base(mediatorService, imGuiService, "Allagan Item Search - Configuration")
+        : base(mediatorService, imGuiService, $"{Loc.T("Allagan Item Search - Configuration")}###Allagan Item Search - Configuration")
     {
         this.SizeConstraints = new WindowSizeConstraints
         {
@@ -75,14 +76,14 @@ public class ConfigWindow : ExtendedWindow
     {
         if (ImGui.BeginMenuBar())
         {
-            if (ImGui.BeginMenu("File"))
+            if (ImGui.BeginMenu(Loc.T("File")))
             {
-                if (ImGui.MenuItem("Main Window"))
+                if (ImGui.MenuItem(Loc.T("Main Window")))
                 {
                     this.MediatorService.Publish(new OpenWindowMessage(typeof(MainWindow)));
                 }
 
-                if (ImGui.MenuItem("Report a Issue"))
+                if (ImGui.MenuItem(Loc.T("Report a Issue")))
                 {
                     "https://github.com/Critical-Impact/AllaganItemSearch".OpenBrowser();
                 }
@@ -92,7 +93,7 @@ public class ConfigWindow : ExtendedWindow
                     "https://ko-fi.com/critical_impact".OpenBrowser();
                 }
 
-                if (ImGui.MenuItem("Close"))
+                if (ImGui.MenuItem(Loc.T("Close")))
                 {
                     this.IsOpen = false;
                 }
@@ -100,18 +101,18 @@ public class ConfigWindow : ExtendedWindow
                 ImGui.EndMenu();
             }
 
-            if (ImGui.BeginMenu("Wizard"))
+            if (ImGui.BeginMenu(Loc.T("Wizard")))
             {
                 var hasNewFeatures = this.configurationWizardService.HasNewFeatures;
                 using var disabled = ImRaii.Disabled(!hasNewFeatures);
-                if (ImGui.MenuItem("Configure New Features"))
+                if (ImGui.MenuItem(Loc.T("Configure New Features")))
                 {
                     this.MediatorService.Publish(new OpenWindowMessage(typeof(WizardWindow)));
                 }
 
                 disabled.Dispose();
 
-                if (ImGui.MenuItem("Reconfigure All Features"))
+                if (ImGui.MenuItem(Loc.T("Reconfigure All Features")))
                 {
                     this.configurationWizardService.ClearFeaturesSeen();
                     this.MediatorService.Publish(new OpenWindowMessage(typeof(WizardWindow)));
@@ -126,11 +127,11 @@ public class ConfigWindow : ExtendedWindow
         this.verticalSplitter.Draw(
             () =>
             {
-                ImGui.Text("Configuration");
+                ImGui.Text(Loc.T("Configuration"));
                 ImGui.Separator();
                 foreach (var group in this.settings)
                 {
-                    if (ImGui.Selectable(group.Key.ToString(), group.Key == this.currentSettingType))
+                    if (ImGui.Selectable(SettingTypeConfiguration.GetFormattedName(group.Key), group.Key == this.currentSettingType))
                     {
                         this.currentSettingType = group.Key;
                     }

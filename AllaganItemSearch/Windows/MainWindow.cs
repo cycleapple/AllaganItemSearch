@@ -8,6 +8,7 @@ using AllaganItemSearch.ItemRenderers;
 using AllaganItemSearch.Mediator;
 using AllaganItemSearch.Services;
 using AllaganItemSearch.Settings;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 using AllaganLib.GameSheets.Model;
 using AllaganLib.GameSheets.Sheets.Rows;
@@ -88,21 +89,21 @@ public class MainWindow : ExtendedWindow
         this.Flags = ImGuiWindowFlags.MenuBar;
         this.SizeCondition = ImGuiCond.FirstUseEver;
         this.Size = new Vector2(400, 400);
-        this.filterSearchField = stringFilterFactory.Invoke("search", "Filter Search:", "Type in the name of the filter you are looking for.",row => "");
+        this.filterSearchField = stringFilterFactory.Invoke("search", Loc.T("Filter Search:"), Loc.T("Type in the name of the filter you are looking for."),row => "");
     }
 
     public void DrawMenuBar()
     {
         if (ImGui.BeginMenuBar())
         {
-            if (ImGui.BeginMenu("File"))
+            if (ImGui.BeginMenu(Loc.T("File")))
             {
-                if (ImGui.MenuItem("Configuration"))
+                if (ImGui.MenuItem(Loc.T("Configuration")))
                 {
                     this.MediatorService.Publish(new OpenWindowMessage(typeof(ConfigWindow)));
                 }
 
-                if (ImGui.MenuItem("Report a Issue"))
+                if (ImGui.MenuItem(Loc.T("Report a Issue")))
                 {
                     "https://github.com/Critical-Impact/AllaganItemSearch".OpenBrowser();
                 }
@@ -112,7 +113,7 @@ public class MainWindow : ExtendedWindow
                     "https://ko-fi.com/critical_impact".OpenBrowser();
                 }
 
-                if (ImGui.MenuItem("Close"))
+                if (ImGui.MenuItem(Loc.T("Close")))
                 {
                     this.IsOpen = false;
                 }
@@ -120,24 +121,24 @@ public class MainWindow : ExtendedWindow
                 ImGui.EndMenu();
             }
 
-            if (ImGui.BeginMenu("View"))
+            if (ImGui.BeginMenu(Loc.T("View")))
             {
                 var currentViewMode = this.filterPanePositionSetting.CurrentValue(this.configuration);
-                ImGui.TextUnformatted("Filter Pane Position");
+                ImGui.TextUnformatted(Loc.T("Filter Pane Position"));
                 ImGui.Separator();
-                if (ImGui.MenuItem("Left", "", currentViewMode == FilterPanePosition.Left))
+                if (ImGui.MenuItem(Loc.T("Left"), "", currentViewMode == FilterPanePosition.Left))
                 {
                     this.filterPanePositionSetting.UpdateFilterConfiguration(this.configuration, FilterPanePosition.Left);
                 }
-                if (ImGui.MenuItem("Right", "", currentViewMode == FilterPanePosition.Right))
+                if (ImGui.MenuItem(Loc.T("Right"), "", currentViewMode == FilterPanePosition.Right))
                 {
                     this.filterPanePositionSetting.UpdateFilterConfiguration(this.configuration, FilterPanePosition.Right);
                 }
-                if (ImGui.MenuItem("Top", "", currentViewMode == FilterPanePosition.Top))
+                if (ImGui.MenuItem(Loc.T("Top"), "", currentViewMode == FilterPanePosition.Top))
                 {
                     this.filterPanePositionSetting.UpdateFilterConfiguration(this.configuration, FilterPanePosition.Top);
                 }
-                if (ImGui.MenuItem("Bottom", "", currentViewMode == FilterPanePosition.Bottom))
+                if (ImGui.MenuItem(Loc.T("Bottom"), "", currentViewMode == FilterPanePosition.Bottom))
                 {
                     this.filterPanePositionSetting.UpdateFilterConfiguration(this.configuration, FilterPanePosition.Bottom);
                 }
@@ -152,7 +153,7 @@ public class MainWindow : ExtendedWindow
     public override void Draw()
     {
         this.DrawMenuBar();
-        var barHeight = ImGui.CalcTextSize("Try On").Y + (ImGui.GetStyle().ItemSpacing.Y * 2);
+        var barHeight = ImGui.CalcTextSize(Loc.T("Try On")).Y + (ImGui.GetStyle().ItemSpacing.Y * 2);
         using (var wrapper = ImRaii.Child("wrapper", new Vector2(0, -barHeight), false, ImGuiWindowFlags.NoScrollbar))
         {
             if (wrapper)
@@ -246,7 +247,7 @@ public class MainWindow : ExtendedWindow
             if (bottomBar)
             {
                 bool tryOn = this.tryOn;
-                if (ImGui.Checkbox("Dressing Mode", ref tryOn))
+                if (ImGui.Checkbox($"{Loc.T("Dressing Mode")}###Dressing Mode", ref tryOn))
                 {
                     if (tryOn)
                     {
@@ -261,7 +262,7 @@ public class MainWindow : ExtendedWindow
                     {
                         if (tooltip)
                         {
-                            ImGui.TextUnformatted("Opens the dresser window and clicking an item automatically tries it on.");
+                            ImGui.TextUnformatted(Loc.T("Opens the dresser window and clicking an item automatically tries it on."));
                         }
                     }
                 }
@@ -290,22 +291,22 @@ public class MainWindow : ExtendedWindow
             {
                 ImGui.Text(item.NameString);
                 ImGui.Separator();
-                if (ImGui.Selectable("Open in Garland Tools"))
+                if (ImGui.Selectable(Loc.T("Open in Garland Tools")))
                 {
                     $"https://www.garlandtools.org/db/#item/{item.GarlandToolsId}".OpenBrowser();
                 }
 
-                if (ImGui.Selectable("Open in Teamcraft"))
+                if (ImGui.Selectable(Loc.T("Open in Teamcraft")))
                 {
                     $"https://ffxivteamcraft.com/db/en/item/{item.RowId}".OpenBrowser();
                 }
 
-                if (ImGui.Selectable("Open in Universalis"))
+                if (ImGui.Selectable(Loc.T("Open in Universalis")))
                 {
                     $"https://universalis.app/market/{item.RowId}".OpenBrowser();
                 }
 
-                if (ImGui.Selectable("Open in Gamer Escape"))
+                if (ImGui.Selectable(Loc.T("Open in Gamer Escape")))
                 {
                     var name = item.NameString.Replace(' ', '_');
                     name = name.Replace('–', '-');
@@ -315,7 +316,7 @@ public class MainWindow : ExtendedWindow
                     $"https://ffxiv.gamerescape.com/wiki/{HttpUtility.UrlEncode(name)}?useskin=Vector".OpenBrowser();
                 }
 
-                if (ImGui.Selectable("Open in Console Games Wiki"))
+                if (ImGui.Selectable(Loc.T("Open in Console Games Wiki")))
                 {
                     var name = item.NameString.Replace("#"," ").Replace("  ", " ").Replace(' ', '_');
                     name = name.Replace('–', '-');
@@ -326,17 +327,17 @@ public class MainWindow : ExtendedWindow
                 }
 
                 ImGui.Separator();
-                if (ImGui.Selectable("Copy Name"))
+                if (ImGui.Selectable(Loc.T("Copy Name")))
                 {
                     this.clipboardService.CopyToClipboard(item.NameString);
                 }
 
-                if (ImGui.Selectable("Link"))
+                if (ImGui.Selectable(Loc.T("Link")))
                 {
                     this.chatService.LinkItem(item);
                 }
 
-                if (item.CanTryOn && ImGui.Selectable("Try On"))
+                if (item.CanTryOn && ImGui.Selectable(Loc.T("Try On")))
                 {
                     if (item.CanTryOn)
                     {
@@ -344,7 +345,7 @@ public class MainWindow : ExtendedWindow
                     }
                 }
 
-                if (ImGui.Selectable("More Information"))
+                if (ImGui.Selectable(Loc.T("More Information")))
                 {
                     this.MediatorService.Publish(new OpenMoreInformationMessage(item.RowId));
                 }
@@ -400,49 +401,49 @@ public class MainWindow : ExtendedWindow
                         }
                     }
 
-                    ImGui.TextUnformatted($"Item Level {item.Base.LevelItem.RowId}");
+                    ImGui.TextUnformatted($"{Loc.T("Item Level")} {item.Base.LevelItem.RowId}");
                     if (item.ClassJobCategory != null)
                     {
-                        ImGui.TextUnformatted($"Equip Level {item.Base.LevelEquip}");
+                        ImGui.TextUnformatted($"{Loc.T("Equip Level")} {item.Base.LevelEquip}");
                     }
 
                     ImGui.TextUnformatted(item.FormattedRarity);
 
                     if (item.EquipRace != CharacterRace.Any && item.EquipRace != CharacterRace.None)
                     {
-                        ImGui.TextUnformatted($"Only equippable by {item.EquipRace}");
+                        ImGui.TextUnformatted($"{Loc.T("Only equippable by")} {Loc.T(item.EquipRace.ToString())}");
                     }
 
                     if (item.EquippableByGender != CharacterSex.Both && item.EquippableByGender != CharacterSex.NotApplicable)
                     {
-                        ImGui.TextUnformatted($"Only equippable by {item.EquippableByGender.ToString()}");
+                        ImGui.TextUnformatted($"{Loc.T("Only equippable by")} {Loc.T(item.EquippableByGender.ToString())}");
                     }
 
                     if (item.Base.CanBeHq)
                     {
-                        ImGui.TextUnformatted("Can be HQ");
+                        ImGui.TextUnformatted(Loc.T("Can be HQ"));
                     }
 
                     if (item.Base.IsUnique)
                     {
-                        ImGui.TextUnformatted("Unique");
+                        ImGui.TextUnformatted(Loc.T("Unique"));
                     }
 
                     if (item.Base.IsUntradable)
                     {
-                        ImGui.TextUnformatted("Untradable");
+                        ImGui.TextUnformatted(Loc.T("Untradable"));
                     }
 
 
                     if (item.Sources.Count > 0)
                     {
                         ImGui.NewLine();
-                        ImGui.TextUnformatted("Available From: ");
+                        ImGui.TextUnformatted(Loc.T("Available From:"));
                         ImGui.Separator();
                         ImGui.PushTextWrapPos();
                         var sources = item.Sources.Select(c => c.Type).Distinct().Select(
                                               c => this.itemInfoRenderService.GetSourceRendererByItemInfoType(c)
-                                                       ?.SingularName)
+                                                       is { } renderer ? Loc.RendererName(renderer) : null)
                                           .Where(c => c != null).Select(c => c!);
                         ImGui.TextUnformatted(string.Join(", ", sources));
                         ImGui.PopTextWrapPos();
@@ -452,12 +453,12 @@ public class MainWindow : ExtendedWindow
                     if (item.Uses.Count > 0)
                     {
                         ImGui.NewLine();
-                        ImGui.TextUnformatted("Used In: ");
+                        ImGui.TextUnformatted(Loc.T("Used In:"));
                         ImGui.Separator();
                         ImGui.PushTextWrapPos();
                         var uses = item.Uses.Select(c => c.Type).Distinct().Select(
                                               c => this.itemInfoRenderService.GetUseRendererByItemInfoType(c)
-                                                       ?.SingularName)
+                                                       is { } renderer ? Loc.RendererName(renderer) : null)
                                           .Where(c => c != null).Select(c => c!);
                         ImGui.TextUnformatted(string.Join(", ", uses));
                         ImGui.PopTextWrapPos();
@@ -466,13 +467,13 @@ public class MainWindow : ExtendedWindow
                     ImGui.Separator();
                     using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.DalamudGrey))
                     {
-                        ImGui.TextUnformatted("Ctrl: Link");
+                        ImGui.TextUnformatted(Loc.T("Ctrl: Link"));
                         if (item.CanTryOn)
                         {
-                            ImGui.TextUnformatted("Shift: Try on");
+                            ImGui.TextUnformatted(Loc.T("Shift: Try on"));
                         }
 
-                        ImGui.TextUnformatted("Click/Alt: More information");
+                        ImGui.TextUnformatted(Loc.T("Click/Alt: More information"));
                     }
                 }
             }
@@ -481,7 +482,7 @@ public class MainWindow : ExtendedWindow
 
     public void DrawFilters()
     {
-        ImGui.Text("Filters");
+        ImGui.Text(Loc.T("Filters"));
         ImGui.Separator();
 
         foreach (var filter in this.filterService.Filters.Where(c => this.configuration.IsFieldPinned(c.Key)))
@@ -493,7 +494,7 @@ public class MainWindow : ExtendedWindow
         {
             if (tabBar)
             {
-                using (var tabItem = ImRaii.TabItem("Basic"))
+                using (var tabItem = ImRaii.TabItem($"{Loc.T("Basic")}###Basic"))
                 {
                     if (tabItem)
                     {
@@ -503,7 +504,7 @@ public class MainWindow : ExtendedWindow
                         }
                     }
                 }
-                using (var tabItem = ImRaii.TabItem("Sources"))
+                using (var tabItem = ImRaii.TabItem($"{Loc.T("Sources")}###Sources"))
                 {
                     if (tabItem)
                     {
@@ -513,7 +514,7 @@ public class MainWindow : ExtendedWindow
                         }
                     }
                 }
-                using (var tabItem = ImRaii.TabItem("Uses"))
+                using (var tabItem = ImRaii.TabItem($"{Loc.T("Uses")}###Uses"))
                 {
                     if (tabItem)
                     {
@@ -524,7 +525,7 @@ public class MainWindow : ExtendedWindow
                     }
                 }
 
-                using (var tabItem = ImRaii.TabItem("Search", ImGuiTabItemFlags.NoTooltip))
+                using (var tabItem = ImRaii.TabItem($"{Loc.T("Search")}###Search", ImGuiTabItemFlags.NoTooltip))
                 {
                     if (tabItem)
                     {
@@ -581,7 +582,7 @@ public class MainWindow : ExtendedWindow
                     {
                         if (tooltip)
                         {
-                            ImGui.TextUnformatted("Clear");
+                            ImGui.TextUnformatted(Loc.T("Clear"));
                         }
                     }
                 }
@@ -608,7 +609,7 @@ public class MainWindow : ExtendedWindow
                         {
                             if (tooltip)
                             {
-                                ImGui.TextUnformatted(isFieldPinned ? "Unpin" : "Pin");
+                                ImGui.TextUnformatted(Loc.T(isFieldPinned ? "Unpin" : "Pin"));
                             }
                         }
                     }
@@ -639,12 +640,12 @@ public class MainWindow : ExtendedWindow
                                 {
                                     ImGui.Separator();
                                     ImGui.TextUnformatted(
-                                        "When searching the following operators can be used to compare: ");
+                                        Loc.T("When searching the following operators can be used to compare:"));
                                     ImGui.TextUnformatted("");
-                                    ImGui.TextUnformatted("=, for exact comparisons");
-                                    ImGui.TextUnformatted("!, for inequality comparisons");
-                                    ImGui.TextUnformatted("||, search multiple expressions using OR");
-                                    ImGui.TextUnformatted("&&, search multiple expressions using AND");
+                                    ImGui.TextUnformatted(Loc.T("=, for exact comparisons"));
+                                    ImGui.TextUnformatted(Loc.T("!, for inequality comparisons"));
+                                    ImGui.TextUnformatted(Loc.T("||, search multiple expressions using OR"));
+                                    ImGui.TextUnformatted(Loc.T("&&, search multiple expressions using AND"));
                                 }
                             }
                         }

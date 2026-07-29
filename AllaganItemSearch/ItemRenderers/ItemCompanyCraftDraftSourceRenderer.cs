@@ -32,8 +32,8 @@ public class ItemCompanyCraftDraftSourceRenderer : ItemInfoRenderer<ItemCompanyC
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = this.AsSource(source);
-        ImGui.Text($"Name: {asSource.CompanyCraftDraft.Value.Name.ExtractText()}");
-        ImGui.Text("Ingredients:");
+        ImGui.Text($"名稱：{asSource.CompanyCraftDraft.Value.Name.ExtractText()}");
+        ImGui.Text("材料：");
         using (ImRaii.PushIndent())
         {
             for (var index = 0; index < asSource.CompanyCraftDraft.Value.RequiredItem.Count; index++)

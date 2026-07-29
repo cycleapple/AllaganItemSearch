@@ -1,8 +1,8 @@
 {
     "Author": "Critical_Impact",
     "Name": "Allagan Item Search",
-    "Punchline": "Trying to find that item you don't know the name of? Maybe Allagan Item Search can help.",
-    "Description": "Allagan Item Search is a dalamud plugin designed to help you search and filter all the items available in the game.",
+    "Punchline": "找不到名稱不明的物品？試試 Allagan Item Search。",
+    "Description": "協助搜尋及篩選遊戲內物品的 Dalamud 插件。",
     "RepoUrl": "https://github.com/cycleapple/AllaganItemSearch/tree/api13-tw",
     "ApplicableVersion": "any",
     "Tags": [

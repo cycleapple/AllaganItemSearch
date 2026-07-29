@@ -38,9 +38,9 @@ public class ItemMonsterDropSourceRenderer : ItemInfoRenderer<ItemMonsterDropSou
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = this.AsSource(source);
-        ImGui.Text("Monster: " + asSource.MobDrop.BNpcName.Value.Singular.ExtractText().ToTitleCase());
+        ImGui.Text("怪物：" + asSource.MobDrop.BNpcName.Value.Singular.ExtractText().ToTitleCase());
 
-        ImGui.Text("Locations: ");
+        ImGui.Text("地點：");
         using (ImRaii.PushIndent())
         {
             foreach (var spawnPosition in asSource.BNpcName.MobSpawnPositions)
@@ -80,8 +80,8 @@ public class ItemMonsterDropSourceRenderer : ItemInfoRenderer<ItemMonsterDropSou
 
         foreach (var npcGroup in positionsGroupedByNpcId)
         {
-            ImGui.Text("Monster: " + this.bnpcNameSheet.GetRow(npcGroup.Key).Base.Singular.ExtractText().ToTitleCase());
-            ImGui.Text("Locations:");
+            ImGui.Text("怪物：" + this.bnpcNameSheet.GetRow(npcGroup.Key).Base.Singular.ExtractText().ToTitleCase());
+            ImGui.Text("地點：");
             using (ImRaii.PushIndent())
             {
                 foreach (var mobSpawnPosition in npcGroup.Value)

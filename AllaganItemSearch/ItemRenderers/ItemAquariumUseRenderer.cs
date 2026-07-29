@@ -19,8 +19,8 @@ public class ItemAquariumUseRenderer : ItemInfoRenderer<ItemAquariumSource>
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var aquariumSource = this.AsSource(source);
-        ImGui.Text("Size: " + aquariumSource.AquariumFish.Size);
-        ImGui.Text("Water Type: " + aquariumSource.AquariumFish.Base.AquariumWater.Value.Name.ExtractText());
+        ImGui.Text("尺寸：" + aquariumSource.AquariumFish.Size);
+        ImGui.Text("水質：" + aquariumSource.AquariumFish.Base.AquariumWater.Value.Name.ExtractText());
     };
 
     public override Func<ItemSource, string> GetName => source =>

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using AllaganItemSearch.Filters;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 using AllaganLib.GameSheets.Caches;
 using AllaganLib.GameSheets.Model;
@@ -73,98 +74,98 @@ public class FilterService : IDisposable
 
     private void AddFilters()
     {
-        this.filters.Add(this.stringFilterFactory.Invoke("name", "Name", "The name of the item", row => row.NameString));
-        this.filters.Add(this.uintChoiceFactory.Invoke("category", "Category", "The category of the item", row => row.Base.ItemUICategory.RowId, this.dataManager.GetExcelSheet<ItemUICategory>().Where(c => c.RowId != 0 && c.Name.ExtractText() != string.Empty).ToDictionary(c => c.RowId, c => c.Name.ExtractText())));
-        this.filters.Add(this.uintRangeFactory.Invoke("equipLevel", "Equip Level", "The equip level of the item", row => row.Base.LevelEquip, 1, 100));
-        this.filters.Add(this.uintRangeFactory.Invoke("itemLevel", "Item Level", "The item's iLvl", row => row.Base.LevelItem.RowId, 1, this.dataManager.GetExcelSheet<Item>().MaxBy(c => c.LevelItem.RowId).LevelItem.RowId));
+        this.filters.Add(this.stringFilterFactory.Invoke("name", Loc.T("Name"), Loc.T("The name of the item"), row => row.NameString));
+        this.filters.Add(this.uintChoiceFactory.Invoke("category", Loc.T("Category"), Loc.T("The category of the item"), row => row.Base.ItemUICategory.RowId, this.dataManager.GetExcelSheet<ItemUICategory>().Where(c => c.RowId != 0 && c.Name.ExtractText() != string.Empty).ToDictionary(c => c.RowId, c => c.Name.ExtractText())));
+        this.filters.Add(this.uintRangeFactory.Invoke("equipLevel", Loc.T("Equip Level"), Loc.T("The equip level of the item"), row => row.Base.LevelEquip, 1, 100));
+        this.filters.Add(this.uintRangeFactory.Invoke("itemLevel", Loc.T("Item Level"), Loc.T("The item's iLvl"), row => row.Base.LevelItem.RowId, 1, this.dataManager.GetExcelSheet<Item>().MaxBy(c => c.LevelItem.RowId).LevelItem.RowId));
         this.filters.Add(
             this.uintChoiceFactory.Invoke(
                 "rarity",
-                "Rarity",
-                "The rarity of the item",
+                Loc.T("Rarity"),
+                Loc.T("The rarity of the item"),
                 row => row.Base.Rarity,
                 new Dictionary<uint, string>()
         {
-            { 1, "Normal" },
-            { 2, "Scarce" },
-            { 3, "Artifact" },
-            { 4, "Relic" },
-            { 7, "Aetherial" },
+            { 1, Loc.T("Normal") },
+            { 2, Loc.T("Scarce") },
+            { 3, Loc.T("Artifact") },
+            { 4, Loc.T("Relic") },
+            { 7, Loc.T("Aetherial") },
         }));
 
         this.filters.Add(
             this.uintChoiceFactory.Invoke(
                 "classRole",
-                "Class Role",
-                "The class/job role",
+                Loc.T("Class Role"),
+                Loc.T("The class/job role"),
                 row => row.ClassJobCategory?.ClassJobs.FirstOrDefault()
                           ?.Base.Role ??
                        0,
                 new Dictionary<uint, string>()
         {
-            { 0, "Non-combatant" },
-            { 1, "Tank" },
-            { 2, "Melee DPS" },
-            { 3, "Ranged DPS" },
-            { 4, "Healer" },
+            { 0, Loc.T("Non-combatant") },
+            { 1, Loc.T("Tank") },
+            { 2, Loc.T("Melee DPS") },
+            { 3, Loc.T("Ranged DPS") },
+            { 4, Loc.T("Healer") },
         }));
 
         this.filters.Add(
             this.uintChoiceFactory.Invoke(
                 "race",
-                "Race",
-                "The race required to equip the item",
+                Loc.T("Race"),
+                Loc.T("The race required to equip the item"),
                 row => (uint)row.EquipRace,
                 new Dictionary<uint, string>()
         {
-            { (uint)CharacterRace.Hyur, "Hyur" },
-            { (uint)CharacterRace.Elezen, "Elezen" },
-            { (uint)CharacterRace.Hrothgar, "Hrothgar" },
-            { (uint)CharacterRace.Lalafell, "Lalafell" },
-            { (uint)CharacterRace.Miqote, "Miqote" },
-            { (uint)CharacterRace.Roegadyn, "Roegadyn" },
-            { (uint)CharacterRace.Viera, "Viera" },
-            { (uint)CharacterRace.AuRa, "AuRa" },
+            { (uint)CharacterRace.Hyur, Loc.T("Hyur") },
+            { (uint)CharacterRace.Elezen, Loc.T("Elezen") },
+            { (uint)CharacterRace.Hrothgar, Loc.T("Hrothgar") },
+            { (uint)CharacterRace.Lalafell, Loc.T("Lalafell") },
+            { (uint)CharacterRace.Miqote, Loc.T("Miqote") },
+            { (uint)CharacterRace.Roegadyn, Loc.T("Roegadyn") },
+            { (uint)CharacterRace.Viera, Loc.T("Viera") },
+            { (uint)CharacterRace.AuRa, Loc.T("AuRa") },
         }));
 
         this.filters.Add(
             this.uintChoiceFactory.Invoke(
                 "sex",
-                "Sex",
-                "The sex required to equip the item",
+                Loc.T("Sex"),
+                Loc.T("The sex required to equip the item"),
                 row => (uint)row.EquippableByGender,
                 new Dictionary<uint, string>()
         {
-            { (uint)CharacterSex.Male, "Male" },
-            { (uint)CharacterSex.Female, "Female" },
+            { (uint)CharacterSex.Male, Loc.T("Male") },
+            { (uint)CharacterSex.Female, Loc.T("Female") },
         }));
 
         this.filters.Add(
             this.yesNoChoiceFactory.Invoke(
                 "canBeHq",
-                "Can be HQ?",
-                "Can this item be high quality?",
+                Loc.T("Can be HQ?"),
+                Loc.T("Can this item be high quality?"),
                 row => row.Base.CanBeHq));
 
         this.filters.Add(
             this.yesNoChoiceFactory.Invoke(
                 "isUnique",
-                "Is Unique?",
-                "Is this item unique?",
+                Loc.T("Is Unique?"),
+                Loc.T("Is this item unique?"),
                 row => row.Base.IsUnique));
 
         this.filters.Add(
             this.yesNoChoiceFactory.Invoke(
                 "tradable",
-                "Is Tradable?",
-                "Is this item tradable?",
+                Loc.T("Is Tradable?"),
+                Loc.T("Is this item tradable?"),
                 row => !row.Base.IsUntradable));
 
         this.filters.Add(
             this.yesNoChoiceFactory.Invoke(
                 "equippable",
-                "Is Equippable?",
-                "Can the item be equipped?",
+                Loc.T("Is Equippable?"),
+                Loc.T("Can the item be equipped?"),
                 row => row.CanTryOn));
 
         var sourceUseFilters = new List<IItemFilter>();
@@ -176,8 +177,8 @@ public class FilterService : IDisposable
                 var renderer = this.itemInfoRenderService.SourceRenderersByItemInfoType[source];
                 var yesNoChoiceFilter = this.yesNoChoiceFactory.Invoke(
                     "s_" + source,
-                    "Source - " + renderer.SingularName,
-                    renderer.HelpText,
+                    Loc.T("Source - ") + Loc.RendererName(renderer),
+                    Loc.RendererHelp(renderer),
                     row => row.HasSourcesByType(source));
                 yesNoChoiceFilter.RendererType = renderer.RendererType;
                 yesNoChoiceFilter.Categories = renderer.Categories;
@@ -193,8 +194,8 @@ public class FilterService : IDisposable
                 var renderer = this.itemInfoRenderService.UseRenderersByItemInfoType[source];
                 var yesNoChoiceFilter = this.yesNoChoiceFactory.Invoke(
                     "u_" + source,
-                    "Use - " + renderer.SingularName,
-                    renderer.HelpText,
+                    Loc.T("Use - ") + Loc.RendererName(renderer),
+                    Loc.RendererHelp(renderer),
                     row => row.HasUsesByType(source));
                 yesNoChoiceFilter.RendererType = renderer.RendererType;
                 yesNoChoiceFilter.Categories = renderer.Categories;

@@ -226,15 +226,15 @@ public abstract class ItemGatheringSourceRenderer<T> : ItemInfoRenderer<T> where
              : asSource.MapIds.Select(c => this.mapSheet.GetRow(c).FormattedName);
 
          var level = asSource.GatheringItem.Base.GatheringItemLevel.Value.GatheringItemLevel;
-         ImGui.Text("Level:" + (level == 0 ? "N/A" : level));
+         ImGui.Text("等級：" + (level == 0 ? "無" : level));
          var stars = asSource.GatheringItem.Base.GatheringItemLevel.Value.Stars;
-         ImGui.Text("Stars:" + (stars == 0 ? "N/A" : stars));
+         ImGui.Text("星級：" + (stars == 0 ? "無" : stars));
          var perceptionRequired = asSource.GatheringItem.Base.PerceptionReq;
-         ImGui.Text("Perception Required:" + (perceptionRequired == 0 ? "N/A" : stars));
+         ImGui.Text("獲得力需求：" + (perceptionRequired == 0 ? "無" : stars));
 
          if (asSource.GatheringItem.AvailableAtTimedNode)
          {
-             ImGui.Text("Maps:");
+             ImGui.Text("地圖：");
              using (ImRaii.PushIndent())
              {
                  foreach (var gatheringPoint in asSource.GatheringItem.GatheringPoints)
@@ -253,7 +253,7 @@ public abstract class ItemGatheringSourceRenderer<T> : ItemInfoRenderer<T> where
                      {
                          using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.DalamudRed))
                          {
-                             ImGui.Text(mapName + ": up in " +
+                             ImGui.Text(mapName + "：距離出現尚有 " +
                                                TimeInterval.DurationString(nextUptime.Value.Start, TimeStamp.UtcNow,
                                                    true));
                          }
@@ -262,7 +262,7 @@ public abstract class ItemGatheringSourceRenderer<T> : ItemInfoRenderer<T> where
                      {
                          using (ImRaii.PushColor(ImGuiCol.Text, ImGuiColors.HealerGreen))
                          {
-                             ImGui.Text(mapName + " up for " +
+                             ImGui.Text(mapName + "：剩餘出現時間 " +
                                                TimeInterval.DurationString(nextUptime.Value.End, TimeStamp.UtcNow,
                                                    true));
                          }
@@ -274,7 +274,7 @@ public abstract class ItemGatheringSourceRenderer<T> : ItemInfoRenderer<T> where
          {
              if (maps != null)
              {
-                 ImGui.Text("Maps:");
+                 ImGui.Text("地圖：");
                  using (ImRaii.PushIndent())
                  {
                      foreach (var map in maps)

@@ -8,6 +8,7 @@ using AllaganItemSearch.Services;
 using DalaMock.Host.Mediator;
 
 using Dalamud.Bindings.ImGui;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 namespace AllaganItemSearch.Windows;
 
@@ -19,7 +20,7 @@ public class WizardWindow : ExtendedWindow, IDisposable
         WizardWidget<Configuration> wizardWidget,
         MediatorService mediatorService,
         ImGuiService imGuiService)
-        : base(mediatorService, imGuiService, "Allagan Item Search - Wizard")
+        : base(mediatorService, imGuiService, $"{Loc.T("Allagan Item Search - Wizard")}###Allagan Item Search - Wizard")
     {
         this.wizardWidget = wizardWidget;
         this.wizardWidget.OnClosed += this.WizardWidgetOnOnClosed;

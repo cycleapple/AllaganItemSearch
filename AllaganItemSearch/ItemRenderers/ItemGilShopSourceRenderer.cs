@@ -56,7 +56,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
             ? new List<string>()
             : shopSource.MapIds.Select(c => this.mapSheet.GetRow(c).FormattedName)).ToList();
 
-        ImGui.Text("Costs:");
+        ImGui.Text("所需物品：");
 
         using (ImRaii.PushIndent())
         {
@@ -83,7 +83,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
 
         if (maps.Count != 0)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)
@@ -99,7 +99,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
         var asSource = this.AsSource(source);
         var maps = source.MapIds?.Select(c => this.mapSheet.GetRow(c).FormattedName).ToList() ?? new List<string>();
 
-        ImGui.Text("Costs:");
+        ImGui.Text("所需物品：");
 
         using (ImRaii.PushIndent())
         {
@@ -126,7 +126,7 @@ public class ItemGilShopSourceRenderer : ItemInfoRenderer<ItemGilShopSource>
 
         if (maps.Count != 0)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)

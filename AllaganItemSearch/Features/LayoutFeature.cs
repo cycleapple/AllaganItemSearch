@@ -4,6 +4,7 @@ using AllaganItemSearch.Settings;
 
 using AllaganLib.Interface.FormFields;
 using AllaganLib.Interface.Wizard;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 namespace AllaganItemSearch.Features;
 
@@ -13,7 +14,7 @@ public class LayoutFeature(IEnumerable<IFormField<Configuration>> settings) : Fe
     ],
     settings)
 {
-    public override string Name { get; } = "Layout";
+    public override string Name { get; } = Loc.T("Layout");
 
-    public override string Description { get; } = "Customize the plugins layout.";
+    public override string Description { get; } = Loc.T("Customize the plugins layout.");
 }

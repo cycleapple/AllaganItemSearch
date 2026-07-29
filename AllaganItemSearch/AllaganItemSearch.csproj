@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Dalamud.NET.Sdk/13.0.0">
     <PropertyGroup>
-        <Version>1.0.0.3</Version>
+        <Version>1.0.0.4</Version>
         <Description>A plugin designed for quickly searching through all in-game items, providing detailed information on gear, crafting materials, and collectibles.</Description>
         <PackageProjectUrl>https://github.com/cycleapple/AllaganItemSearch/tree/api13-tw</PackageProjectUrl>
         <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
@@ -49,5 +49,6 @@
 
     <ItemGroup>
         <AdditionalFiles Include="stylecop.json"/>
+        <EmbeddedResource Include="Localization\zh-TW.json" LogicalName="AllaganItemSearch.Localization.zh-TW.json" />
     </ItemGroup>
 </Project>

@@ -19,7 +19,7 @@ public class ItemGcExpertDeliverySourceRenderer : ItemInfoRenderer<ItemGCExpertD
     {
         var asSource = this.AsSource(source);
         var sealsRewarded = asSource.SealsRewarded;
-        ImGui.Text("Seals rewarded: " + sealsRewarded);
+        ImGui.Text("軍票獎勵：" + sealsRewarded);
     };
 
     public override Func<ItemSource, string> GetName => _ =>

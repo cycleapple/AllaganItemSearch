@@ -22,7 +22,7 @@ public class ItemGardeningCrossbreedSourceRenderer : ItemInfoRenderer<ItemGarden
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = this.AsSource(source);
-        ImGui.Text($"Result: {asSource.SeedResult.NameString}");
+        ImGui.Text($"結果：{asSource.SeedResult.NameString}");
         ImGui.Text($"{asSource.Seed1.NameString} + {asSource.Seed2.NameString}");
     };
 

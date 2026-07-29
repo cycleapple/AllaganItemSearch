@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using AllaganItemSearch.ItemRenderers;
+using Loc = AllaganItemSearch.Localization.Localization;
 
 using AllaganLib.GameSheets.Sheets.Rows;
 using AllaganLib.Interface.FormFields;
@@ -86,8 +87,8 @@ public class YesNoChoiceFilter : ChoiceFormField<YesNoChoice, FilterState>, IIte
 
     public override Dictionary<YesNoChoice, string> Choices => new Dictionary<YesNoChoice, string>
     {
-        [YesNoChoice.NA] = "Not Set",
-        [YesNoChoice.No] = "No",
-        [YesNoChoice.Yes] = "Yes",
+        [YesNoChoice.NA] = Loc.T("Not Set"),
+        [YesNoChoice.No] = Loc.T("No"),
+        [YesNoChoice.Yes] = Loc.T("Yes"),
     };
 }

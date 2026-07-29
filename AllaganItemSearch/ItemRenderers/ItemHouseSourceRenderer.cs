@@ -29,11 +29,11 @@ public abstract class ItemHouseSourceRenderer<T> : ItemInfoRenderer<T> where T :
         var setName = asSource.HousingPreset.Value.Singular.ExtractText();
         if (setName == string.Empty)
         {
-            ImGui.Text("Not default in any house.");
+            ImGui.Text("不是任何房屋的預設配置。");
         }
         else
         {
-            ImGui.Text("Default in " + setName);
+        ImGui.Text("預設配置：" + setName);
         }
     };
 

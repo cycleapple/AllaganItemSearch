@@ -70,8 +70,8 @@ public class ItemSpecialShopSourceRenderer : ItemInfoRenderer<ItemSpecialShopSou
             ? null
             : asSource.MapIds.Select(c => this.mapSheet.GetRow(c).FormattedName);
 
-        ImGui.Text($"Shop: {asSource.Shop.Name}");
-        ImGui.Text("Rewards:");
+        ImGui.Text($"商店：{asSource.Shop.Name}");
+        ImGui.Text("獎勵：");
         using (ImRaii.PushIndent())
         {
             foreach (var reward in asSource.ShopListing.Rewards)
@@ -90,7 +90,7 @@ public class ItemSpecialShopSourceRenderer : ItemInfoRenderer<ItemSpecialShopSou
                 }
             }
         }
-        ImGui.Text("Costs:");
+        ImGui.Text("所需物品：");
         using (ImRaii.PushIndent())
         {
             foreach (var cost in asSource.ShopListing.Costs)
@@ -112,7 +112,7 @@ public class ItemSpecialShopSourceRenderer : ItemInfoRenderer<ItemSpecialShopSou
 
         if (maps != null)
         {
-            ImGui.Text("Maps:");
+        ImGui.Text("地圖：");
             using (ImRaii.PushIndent())
             {
                 foreach (var map in maps)

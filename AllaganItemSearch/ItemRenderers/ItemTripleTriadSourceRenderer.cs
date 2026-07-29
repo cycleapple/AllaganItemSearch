@@ -28,8 +28,8 @@ public class ItemTripleTriadSourceRenderer : ItemInfoRenderer<ItemTripleTriadSou
     {
         var asSource = this.AsSource(source);
 
-        ImGui.TextUnformatted("Match Cost: " + asSource.TripleTriadRow.Base.Fee + SeIconChar.Gil.ToIconString());
-        ImGui.TextUnformatted("Uses Regional Rules: " + (asSource.TripleTriadRow.Base.UsesRegionalRules ? "Yes" : "No"));
+        ImGui.TextUnformatted("對戰費用：" + asSource.TripleTriadRow.Base.Fee + SeIconChar.Gil.ToIconString());
+        ImGui.TextUnformatted("使用地區規則：" + (asSource.TripleTriadRow.Base.UsesRegionalRules ? "是" : "否"));
     };
 
     public override Func<ItemSource, string> GetName => (source) =>
