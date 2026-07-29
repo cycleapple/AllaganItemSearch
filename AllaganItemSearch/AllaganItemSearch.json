@@ -3,6 +3,7 @@
     "Name": "Allagan Item Search",
     "Punchline": "Trying to find that item you don't know the name of? Maybe Allagan Item Search can help.",
     "Description": "Allagan Item Search is a dalamud plugin designed to help you search and filter all the items available in the game.",
+    "RepoUrl": "https://github.com/cycleapple/AllaganItemSearch/tree/api13-tw",
     "ApplicableVersion": "any",
     "Tags": [
         "search",
