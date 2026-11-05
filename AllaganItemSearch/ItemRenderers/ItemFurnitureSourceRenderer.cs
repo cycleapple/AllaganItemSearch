@@ -20,8 +20,8 @@ public class ItemFurnitureSourceRenderer : ItemInfoRenderer<ItemFurnitureSource>
     public override Action<ItemSource> DrawTooltip => source =>
     {
         var asSource = this.AsSource(source);
-        ImGui.Text($"分類：{asSource.FurnitureCatalogItem.Value.Category.Value.Category.ExtractText()}");
-        ImGui.Text($"新增版本：{asSource.FurnitureCatalogItem.Value.Patch}");
+        ImGui.Text($"分類：{asSource.FurnitureCatalogItemList.Value.Category.Value.Category.ExtractText()}");
+        ImGui.Text($"新增版本：{asSource.FurnitureCatalogItemList.Value.Patch}");
     };
 
     public override Func<ItemSource, string> GetName => source =>

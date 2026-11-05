@@ -53,6 +53,8 @@ public class YesNoChoiceFilter : ChoiceFormField<YesNoChoice, FilterState>, IIte
         set { }
     }
 
+    public override bool Equal(YesNoChoice item1, YesNoChoice item2) => item1 == item2;
+
     public override string Version => "1.0";
 
     public Func<ItemRow, bool> Transformer => this.transformer;

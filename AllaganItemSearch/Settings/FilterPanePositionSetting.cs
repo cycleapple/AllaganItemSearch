@@ -28,6 +28,8 @@ public class FilterPanePositionSetting : ChoiceFormField<FilterPanePosition, Con
 
     public override string HelpText { get; set; } = Loc.T("What side should the filter pane be positioned?");
 
+    public override bool Equal(FilterPanePosition item1, FilterPanePosition item2) => item1 == item2;
+
     public override string Version { get; } = "1.0.0.0";
 
     public override Dictionary<FilterPanePosition, string> Choices => new Dictionary<FilterPanePosition, string>
