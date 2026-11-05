@@ -25,7 +25,7 @@ public class ItemCashShopSourceRenderer : ItemInfoRenderer<ItemCashShopSource>
         ImGui.TextUnformatted($"價格（美元）：{priceUsd}");
         if (asSource.FittingShopItemSetRow?.Items.Count > 1)
         {
-            ImGui.TextUnformatted($"套裝：{asSource.FittingShopItemSetRow.Base.Unknown6.ExtractText()}");
+            ImGui.TextUnformatted($"套裝：{asSource.FittingShopItemSetRow.Base.Name.ExtractText()}");
             ImGui.TextUnformatted("包含：");
             using (ImRaii.PushIndent())
             {
@@ -40,7 +40,7 @@ public class ItemCashShopSourceRenderer : ItemInfoRenderer<ItemCashShopSource>
     public override Func<ItemSource, string> GetName => source =>
     {
         var asSource = this.AsSource(source);
-        return (asSource.FittingShopItemSetRow?.Base.Unknown6.ExtractText() ?? "Not in a set");
+        return (asSource.FittingShopItemSetRow?.Base.Name.ExtractText() ?? "Not in a set");
     };
 
     public override Func<ItemSource, int> GetIcon => source => Icons.BagStar;
